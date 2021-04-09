@@ -19,7 +19,7 @@ object PingActor{
 class PingActor(context:ActorContext[String]) extends AbstractBehavior[String](context){
 
 	var cx:Option[Cancellable] = None
-	
+
 	override def onMessage(msg: String): Behavior[String] = {
 		msg match {
 			case "start" => {
