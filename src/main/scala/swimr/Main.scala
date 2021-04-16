@@ -28,15 +28,10 @@ class PingActor(context:ActorContext[String]) extends AbstractBehavior[String](c
 				val pongActor:ActorRef[PongActor.Ping] = context.spawn(PongActor(), "pong-actor")
 				println("[PingActor] sending 'ping' to PongActor")
 
-				 // val system = akka.actor.ActorSystem("system")
-				 // import system.dispatcher
 				import scala.concurrent.ExecutionContext.Implicits.global
-				// system.scheduler.scheduleOnce(Duration(1000,MILLISECONDS)) {
-				// 	pongActor ! PongActor.Ping(context.self)
-				// }
-
 				import scala.concurrent.duration.FiniteDuration
 				import scala.concurrent.duration.MILLISECONDS
+
 				cx = Some(context.system.scheduler.scheduleWithFixedDelay(
 					FiniteDuration(0,MILLISECONDS),
 					FiniteDuration(1000,MILLISECONDS))(
@@ -138,8 +133,6 @@ object GuardianActor {
 }
 
 object Main extends App {
-//	val ages = Seq(42, 75, 29, 64)
-//	println(s"The oldest person is ${ages.max}")
 
 	val myActorMain:ActorSystem[GuardianActor.Command] = ActorSystem(GuardianActor(),"MyActorTest")
 

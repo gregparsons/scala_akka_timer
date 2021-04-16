@@ -1,4 +1,4 @@
-name := "stock_reader_20210407"
+name := "scala_akka_timer"
 
 version := "0.1"
 
